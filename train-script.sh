@@ -10,7 +10,8 @@ MODELHP=${7:-18}
 DSETROOT=${8:-"."}
 GRIDRESOLUTION=${9:-0.45}
 GRIDSIZE=${10:-100}
-          
+
+export PYTHONPATH=".${PYTHONPATH:+:$PYTHONPATH}"          
 python ./train.py \
     --epochs $EPOCHS \
     --batch_size $BATCHSIZE \

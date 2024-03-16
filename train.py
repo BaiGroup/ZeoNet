@@ -1,8 +1,5 @@
 import sys
 
-sys.path.insert(0, '.')
-sys.path.insert(0, './datasets')
-
 import torch
 import torch.nn as nn
 import torch.optim as optim
@@ -11,7 +8,7 @@ import torch.utils.data as Data
 import argparse
 
 from model import generate_model
-from zeolites import *
+from datasets.zeolites import *
 
 import numpy as np
 
