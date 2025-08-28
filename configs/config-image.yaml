@@ -1,0 +1,23 @@
+# Example: 2D multi-view images representation with h5 input
+loader:
+  representation: "image"
+  data_path: "/path/to/ML-Zeolites"
+  batch_size: 16
+  grid_size: 100
+  grid_resolution: 0.45
+  base_grid_resolution: 0.15
+  num_views: 3
+
+model:
+  name: "mvcnn_resnet18"
+  model_params:
+    nclasses: 1
+    num_views: 3
+
+training:
+  max_epochs: 3
+  learning_rate: 0.001
+  weight_decay: 0
+  use_gpu: true
+  save_dir: "image-001"
+  resume_path: none

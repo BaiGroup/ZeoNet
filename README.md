@@ -1,33 +1,69 @@
-# ZeoNet: 3D convolutional neural networks for predicting adsorption in nanoporous zeolites
-In this work, we present ZeoNet, a representation learning framework using convolutional neural networks (ConvNets) and a novel 3D volumetric representation for predicting
-long-chain hydrocarbon adsorption in all-silica zeolites. The best-performing ZeoNet achieves a correlation coefficient r2 = 0.977 and a mean-squared error MSE = 3.8 in lnkH, which corresponds to an error of only 9.3 kJ/mol in adsorption free energy. We also demonstrate that the predictions driven primarily by the accessible pore volume rather than the region occupied by framework atoms.
+# ZeoNet: Representations for predicting adsorption in nanoporous zeolites
 
-[[Paper]](https://doi.org/10.1039/D3TA01911J)
+## Introduction
 
-## Install Dependencies
+This is the official code repository for the paper [Representation Learning for Long-Chain Hydrocarbon Adsorption in Zeolites](https://www.researchsquare.com/article/rs-6689839/v1) and [ZeoNet: 3D convolutional neural networks for predicting adsorption in nanoporous zeolites](https://pubs.rsc.org/en/content/articlelanding/2023/ta/d3ta01911j).
+
+ZeoNet is a flexible and modular tool for predicting porous material (e.g. zeolites) adsorption properties using various representations, including ConvNets with 3D volumetric grids and 2D multi-view images, Vision Transformers with 3D volumetric grids, PointNet and EdgeConv with pointclouds of atomic coordinates and solvent-accessible surface, and graph-based neural networks (CGCNN, MEGNet, M3GNet, and MACE).
+
+## Available Models
+
+* 3D CNNs: AlexNet, VGG, ResNet, DenseNet (various depths)
+* 2D CNNs: Multi-view ResNet (18, 50)
+* ViTs
+* Pointclouds: PointNet, EdgeConv
+* GNNs: CGCNN, MEGNet, M3GNet, MACE
+
+## Project Structure
+
+1. Codebase
 
 ```
-conda create --name <env_name> --file requirements_conda.txt -c pytorch
+zeonet/
+├── models/           # Model architectures (e.g., CNNs, GNNs, ViTs)
+├── trainer/          # Training and evaluation logic (e.g., Trainer classes)
+├── utils/            # Utility functions (e.g., config loading, data processing)
+├── configs/          # YAML configuration files for models, datasets, and training
+├── datasets/         # Custom PyTorch Dataset classes and data loading logic
+└── train.py          # Main entry point for training ZeoNet  
+```
+
+2. Dataset
+
+For each zeolite structure, the `.cif` file contains crystallographic information such as lattice parameters and atomic positions. The `.h5py` file contains distance grids (a 3D array of shape [x, y, z] in which each grid point is assigned the distance to the surface of its nearest atom) to encode porous structural features, computed by [Zeo++](https://www.zeoplusplus.org/examples.html#grid).
+
+There are two datasets of zeolite structures used in this work, IZASC and PCOD. [IZASC](https://www.iza-structure.org/databases/) consists of experimentally validated zeolite structures approved by the Structure Commission of the International Zeolite Association, while [PCOD](https://pubs.rsc.org/en/content/articlelanding/2011/cp/c0cp02255a) contains computationally predicted zeolite-like materials publicly available in the Predicted Crystallography Open Database.
 
 ```
-## Dataset Construction
-1.Calculate descriptors. Distance grids and handed-engineered features are calculated according to http://www.zeoplusplus.org/examples.html. The handed-engineered features along with adsorption data are stored in the C18-adsorption/each-zeolite-info.csv file. Some examples of distance grids data are shown in distance-grids-h5 folder.
-
-2.Set up directories to organize the data for distance grids and adsorption. Store the distance grids dataset (h5 files) in the 'distance-grids-h5' directory and the adsorption data (csv file) in the 'C18-adsorption' directory. Ensure that within the 'distance-grids-h5' directory, there are two subfolders named IZASC and PCOD. Place the distance grid files (h5 files) in their respective subfolders.
-
-3.For creating your custom training, validation, and test datasets, list the names of zeolite samples in 'train_set.txt', 'val_set.txt', and 'test_set.txt' files within the 'C18-adsorption' directory.
-
-## Running
+ML-Zeolites/
+├── CIFs/                     
+│   ├── IZASC/               # CIF files of experimentally validated zeolite structures from the IZA database
+│   └── PCOD/                # CIF files of hypothetical zeolite structures from the PCOD database
+├── distance-grids-h5/         
+│   ├── IZASC/               # Preprocessed 3D distance grid data (in HDF5 format) for IZASC structures
+│   └── PCOD/                # Preprocessed 3D distance grid data (in HDF5 format) for PCOD structures
+└── C18-adsorption/         
+    ├── each-zeolite-info.csv   # Metadata and adsorption properties (e.g., Henry constants) for each zeolite
+    ├── train_set.txt           # List of training structure IDs
+    ├── val_set.txt             # List of validation structure IDs
+    ├── test_set.txt            # List of test structure IDs
+    └── atom_init.json          # Atom embedding initialization for graph-based models
 ```
-export PYTHONPATH=".${PYTHONPATH:+:$PYTHONPATH}"
-python train.py --epochs=30 --batch_size=16 --lr=0.001 --optimizer='Adam' --model='resnet' --model_hp=18 --grid_resolution=0.45 --grid_size=100
-```
-or
-```
-bash train-script.sh <EXP> <EPOCHS> <BS> <LR> <Optimizer> <MODEL> <MODELHP> <DSETROOT> <GRIDRESOLUTION> <GRIDSIZE>
-```
-e.g. `bash train-script.sh "A001" 30 16 0.001 Adam resnet 18 . 0.45 100`
 
-The code directory needs to be added to the `PYTHONPATH` environment variable, as done in the example above and in `train-script.sh`.
+## Installation
 
+1. Clone the repository
+2. Install dependencies:
+```bash
+conda env create -f environment-linux64-cuda121.yml
+```
+Note: The provided environment file is for Linux (64-bit) systems with CUDA 12.1. Ensure that the DGL version you install is compatible with your PyTorch and CUDA versions. Please refer to the [official DGL installation guide](https://www.dgl.ai/pages/start.html) for proper installation instructions.
 
+## Usage
+
+1. Organize your dataset following the structure described above. `ML-Zeolites` is a small toy dataset we include to help you get started.
+2. Configure your run: set dataset path, representation type, model architecture, and training hyperparameters in a YAML file under the configs/ directory.
+3. Run training:
+```bash
+python train.py --config configs/your_config.yaml
+```

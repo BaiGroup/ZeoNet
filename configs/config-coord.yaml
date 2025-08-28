@@ -1,0 +1,29 @@
+# Example: coordinate pointclouds representation with CIF input
+loader:
+  representation: "coord"
+  data_path: "/path/to/ML-Zeolites"
+  batch_size: 16
+  cell_size: 45
+  num_points: 1024
+
+model:
+# PointNet
+  name: "pointnet"
+  model_params:
+    emb_dims: 1024
+    output_channels: 1
+# EdgeNet
+  name: "edgeconv"
+  model_params:
+    emb_dims: 1024
+    k: 20
+    output_channels: 1
+
+training:
+  max_epochs: 3
+  learning_rate: 0.001
+  weight_decay: 0
+  use_gpu: true
+  save_dir: "pc-coord-001"
+  resume_path: none
+ 

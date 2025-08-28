@@ -1,0 +1,97 @@
+data_PCOD8000007
+_publ_section_title
+;
+Structure prediction by ZEFSAII (Michael W. Deem and Ramdas Pophale) SiO2 
+ PCOD8000007
+Probable space group: P 1
+;
+_chemical_formula_sum "Si O2"
+_cell_formula_units_Z 8
+_cell_length_a 8.666861
+_cell_length_b 9.815657
+_cell_length_c 8.311922
+_cell_angle_alpha 49.474972
+_cell_angle_beta 107.795632
+_cell_angle_gamma 74.653954
+_cell_volume 393.209160
+_symmetry_space_group_name_H-M "P 1"
+_symmetry_group_IT_number 1
+_symmetry_cell_setting 'triclinic'
+loop_
+_space_group_symop_operation_xyz
+x,y,z
+loop_
+_atom_site_type_symbol
+_atom_site_label
+_atom_site_fract_x
+_atom_site_fract_y
+_atom_site_fract_z
+Si Si1 0.533340 0.807500 0.157000
+Si Si2 0.055513 0.632992 0.552429
+Si Si3 0.917896 0.098980 0.266184
+Si Si4 0.511534 0.167414 0.089311
+Si Si5 0.885599 0.639374 0.174179
+Si Si6 0.569215 0.905904 0.618170
+Si Si7 0.777605 0.529382 0.720945
+Si Si8 0.185261 0.114728 0.574028
+O O1 0.698118 0.653816 0.183469
+O O2 0.592997 0.620207 0.458725
+O O3 0.573467 0.974575 0.124413
+O O4 0.295533 0.962672 0.890893
+O O5 0.972677 0.708923 0.285184
+O O6 0.922263 0.590492 0.654204
+O O7 0.290257 0.400886 0.791497
+O O8 0.059989 0.829366 0.472111
+O O9 0.675735 0.213176 0.110359
+O O10 0.008849 0.101892 0.464202
+O O11 0.925514 0.253160 0.016468
+O O12 0.505058 0.097459 0.321044
+O O13 0.074257 0.382668 0.366203
+O O14 0.767181 0.834563 0.845399
+O O15 0.657938 0.664731 0.743981
+O O16 0.361348 0.013894 0.571318
+#
+# Coordination Sequence:
+#
+# PCOD8000007 Si02
+#       8
+#     1   1   1   1   1   1   1   1
+#     4   9  20  41  65  89 127 172 203 253 321 377
+#     4  11  23  43  67  89 130 172 206 254 321 374
+#     4  12  24  40  65 101 122 163 218 262 303 374
+#     4  11  22  40  66  94 126 166 214 257 309 376
+#     4  10  19  39  64  92 125 167 205 253 315 375
+#     4  10  21  39  65  92 126 167 207 253 316 375
+#     4  10  21  43  66  92 128 167 208 261 313 372
+#     4  11  22  37  68  95 126 168 207 257 322 367
+#
+# _framework density 20.345407000000002
+#
+# number of rings (size 3 to 8) (size 9 to 14) (size 15 to 20)
+#    0.000    1.500    6.250    0.750    1.750    0.000 
+#    0.000    5.000    2.750    0.000    0.000    0.000 
+#    0.000    0.000    0.000    0.000    0.000    0.000 
+#
+# Total GULP energy -99125.690527 kJ/mol
+# GULP energy per Si atom -12390.711316 kJ/mol
+# Density = 2.029910 g / cm^3
+# Si number density = 20.345407 Si / 1000 Ang^3
+#
+#
+#
+#
+# Static dielectric constant tensor:
+#      x y z
+#    x 3.368130 -0.103170 0.281580 
+#    y -0.103170 3.767980 0.249390 
+#    z 0.281580 0.249390 4.156450 
+# 
+# 
+# High freq. dielectric constant tensor:
+#      x y z
+#    x 1.757330 -0.017710 0.029220 
+#    y -0.017710 1.794980 0.012760 
+#    z 0.029220 0.012760 1.821290 
+# 
+# From -- ./inp_files/3930.got.cif
+#   From: 2010.03.12/outbox.cif.g09.slc.cpg/sg1_2_cif.got.tgz:3930.got - 2010.03.29 11:57:58.

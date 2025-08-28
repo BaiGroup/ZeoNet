@@ -1,0 +1,34 @@
+# Example: 3D grid representation with h5 input
+loader:
+  representation: "grid"
+  data_path: "/path/to/ML-Zeolites"
+  batch_size: 16
+  grid_size: 100
+  grid_resolution: 0.45
+  base_grid_resolution: 0.15
+
+model:
+# 3D ResNet
+  name: "resnet3d"
+  model_params:
+    model_depth: 18
+    n_classes: 1
+    n_input_channels: 1
+# ViT 3D
+  name: "vit3d"
+  model_params:
+    blocks: 2
+    heads: 16
+    hidden_d: 256
+# 3D AlexNet
+  name: "alexnet3d"
+  model_params:
+    input_dim: 100
+
+training:
+  max_epochs: 3
+  learning_rate: 0.001
+  weight_decay: 0
+  use_gpu: true
+  save_dir: "grid-002"
+  resume_path: "./grid-001/latest_model.pth"

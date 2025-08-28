@@ -1,0 +1,47 @@
+# Example: graph representation with CIF input
+loader:
+  representation: "graph"
+  data_path: "/path/to/ML-Zeolites"
+  batch_size: 2
+# cgcnn
+  max_num_nbr: 12
+  radius: 8.0
+  step: 0.2 
+# megnet and m3gnet
+  cutoff: 4.0
+  threebody_cutoff: 3.0 
+
+model:
+# cgcnn
+  name: "cgcnn" 
+  model_params:
+    orig_atom_fea_len: 92
+    nbr_fea_len: 41
+    atom_fea_len: 64
+    n_conv: 3
+    h_fea_len: 128
+    n_h: 1
+# megnet
+  name: "megnet" 
+  model_params:
+    dim_edge_embedding: 100
+    nblocks: 3
+    cutoff: 4.0
+# m3gnet
+  name: "m3gnet" 
+  model_params:
+    cutoff: 4.0
+    threebody_cutoff: 3.0
+# mace
+  name: "mace" 
+  model_params:
+    r_max: 4.0
+    avg_num_neighbors: 20
+
+training:
+  max_epochs: 3
+  learning_rate: 0.001
+  weight_decay: 0
+  use_gpu: true
+  save_dir: "m3gnet-001"
+  resume_path: none

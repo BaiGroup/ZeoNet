@@ -1,0 +1,31 @@
+name: zeonet121
+channels:
+  - conda-forge
+  - pytorch
+  - pytorch3d
+  - nvidia
+  - dglteam/label/th22_cu121
+  - defaults
+dependencies:
+  - python=3.9
+  - numpy
+  - pandas
+  - scikit-learn
+  - scipy
+  - h5py
+  - matplotlib
+  - pydantic
+  - pymatgen=2024.8.9
+  - pytorch=2.2.0
+  - torchvision=0.17.0
+  - pytorch3d=0.7.8
+  - pytorch-cuda=12.1
+  - dgl=2.2.0
+  - pip
+  - pip:
+      - torchdata==0.7.0
+      - torch-geometric==2.6.1
+      - matgl==1.2.1
+      - ase==3.26.0
+      - e3nn==0.4.4
+      - mace==0.3.5

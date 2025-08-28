@@ -1,0 +1,30 @@
+# Example: surface pointclouds representation sampled from grid data with h5 input
+loader:
+  representation: "surface_point"
+  data_path: "/path/to/ML-Zeolites"
+  batch_size: 16
+  grid_size: 100
+  grid_resolution: 0.45
+  base_grid_resolution: 0.15
+  num_points: 1024
+
+model:
+# PointNet
+  name: "pointnet"
+  model_params:
+    emb_dims: 1024
+    output_channels: 1
+# EdgeNet
+  name: "edgeconv"
+  model_params:
+    emb_dims: 1024
+    k: 20
+    output_channels: 1
+
+training:
+  max_epochs: 3
+  learning_rate: 0.001
+  weight_decay: 0
+  use_gpu: true
+  save_dir: "pc-surface-001"
+  resume_path: none
