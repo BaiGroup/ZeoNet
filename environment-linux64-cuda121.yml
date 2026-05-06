@@ -28,4 +28,4 @@ dependencies:
       - matgl==1.2.1
       - ase==3.26.0
       - e3nn==0.4.4
-      - mace==0.3.5
+      - mace-torch==0.3.5

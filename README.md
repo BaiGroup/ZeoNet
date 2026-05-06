@@ -34,6 +34,8 @@ For each zeolite structure, the `.cif` file contains crystallographic informatio
 
 There are two datasets of zeolite structures used in this work, IZASC and PCOD. [IZASC](https://www.iza-structure.org/databases/) consists of experimentally validated zeolite structures approved by the Structure Commission of the International Zeolite Association, while [PCOD](https://pubs.rsc.org/en/content/articlelanding/2011/cp/c0cp02255a) contains computationally predicted zeolite-like materials publicly available in the Predicted Crystallography Open Database.
 
+The dataset files are available [here](https://drive.google.com/drive/folders/1Gf975GsHlvCS9h1SXEJg1x6CREy0T3Ct?usp=sharing), generated with [Zeo++](https://www.zeoplusplus.org/) using the settings described in the paper. The zeolite information and adsorption labels are given in `each-zeolite-info.csv` and the splits are given in the text files. The distance grids are saved individually as h5py files in PCOD and IZSAC depending on the zeolite type. The pretrained models are stored in the `pretrained_models` folder.
+
 ```
 ML-Zeolites/
 ├── CIFs/                     
